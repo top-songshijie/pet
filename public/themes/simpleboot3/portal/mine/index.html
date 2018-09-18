@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>个人中心</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="http://at.alicdn.com/t/font_820074_1fujb8gaalx.css" rel="stylesheet" type="text/css">
+    <link href="__TMPL__/public/css/weui.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__/public/css/myweui.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__/public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="__TMPL__/public/css/center.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background: #F8F8F8">
+<div id="warp">
+    <!-- begin：头部 -->
+    <div class="center_box">
+        <div class="cen_title">
+            <p class="title_img"><img src="{:cmf_get_image_url($user_info.avatar)}"></p>
+            <p class="title_name">{$user_info.user_nickname}</p>
+        </div>
+        <i class="iconfont icon-xin"></i>
+        <div class="cen_img"><img src="{:cmf_get_image_url($pet_info.avatar)}"></div>
+        <div id="change_pet" class="cen_bom">
+            <span class="cen_name animal_name">{$pet_info.name}</span>
+            <span class="cen_pet">切换宠物<i class="iconfont icon-icon-test"></i></span>
+        </div>
+    </div>
+    <!-- begin：内容列表 -->
+    <div class="center_page">
+        <div class="center_list clearfix">
+            <a href="{:url('mine/my_order')}">
+                <i class="iconfont icon-dingdan"></i>
+                <p class="center_my">我的订单</p>
+                <i class="iconfont icon-icon-test right"></i>
+            </a>
+        </div>
+        <div class="center_list clearfix">
+            <a href="{:url('mine/my_pet')}">
+                <i class="iconfont icon-chongwu1"></i>
+                <p class="center_my">我的萌宠</p>
+                <i class="iconfont icon-icon-test right"></i>
+            </a>
+        </div>
+        <div class="center_list cen_kefu clearfix">
+            <i class="iconfont icon-kefu"></i>
+            <p class="center_my">联系客服</p>
+            <i class="iconfont icon-icon-test right"></i>
+        </div>
+        <div class="center_list clearfix">
+            <a href="{:url('mine/my_activity')}">
+                <i class="iconfont icon-dingdan"></i>
+                <p class="center_my">我的活动</p>
+                <i class="iconfont icon-icon-test right"></i>
+            </a>
+        </div>
+    </div>
+    <!-- begin：底部 -->
+    <div class="ser_foot">
+        <div class="foot_list">
+            <a href="{:url('portal/index/index')}">
+                <div class="foot_icon icon1"></div>
+                <p class="foot_txt">预约服务</p>
+            </a>
+        </div>
+        <div class="foot_list">
+            <a href="{:url('portal/activity/index')}">
+                <div class="foot_icon icon2"></div>
+                <p class="foot_txt">萌宠活动</p>
+            </a>
+        </div>
+        <div class="foot_list foor_curr">
+            <a href="{:url('portal/mine/index')}">
+                <div class="foot_icon icon3"></div>
+                <p class="foot_txt">个人中心</p>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- begin：增加宠物按钮 -->
+<div class="pet_add hidden"><a href="{:url('bank/index')}">增加宠物</a></div>
+<!-- begin:二维码弹层 -->
+<div class="code_fn hidden">
+    <div class="code_box">
+        <p class="iconfont icon-guanbi"></p>
+        <div class="code_img"><img src="{:cmf_get_image_url($contact_info.code)}"></div>
+        <div class="code_page">
+            <p class="code_num">— 客服电话 —</p>
+            <p class="code_txt">{$contact_info.mobile}</p>
+        </div>
+    </div>
+</div>
+<!-- end:二维码弹层 -->
+
+<script type="text/javascript" src="__TMPL__/public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/weui.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/base.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        //联系客服弹层
+        $('.cen_kefu').on('click',function(){
+            $('.code_fn').show();
+        })
+        $('.code_box .icon-guanbi').on('click',function(){
+            $('.code_fn').hide();
+        });
+
+        //更换宠物下拉
+        var pet_list = {$pet_list};
+        $('#change_pet').on('click', function () {
+            weui.picker(pet_list, {
+                onChange: function (result) {
+                    $('.pet_add').show();
+                    $('.weui-mask,.weui-picker__action').on('click',function(){
+                        $('.pet_add').hide();
+                    })
+                },
+                onConfirm: function (result) {
+                    $('.pet_add').hide();
+                    $.ajax({
+                        type:'POST',
+                        url:"{:url('mine/cut_pet')}",
+                        data:{
+                            'id':result[0].value
+                        },
+                        success:function (data) {
+                            $('.animal_name').text(data.data.name);
+                            $('.cen_img img').attr('src',data.data.avatar)
+                        }
+                    })
+                }
+            });
+        });
+    });
+
+</script>
+</body>
+</html>

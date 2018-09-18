@@ -1,0 +1,77 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('AdminHouse/index')}">宠物房型</a></li>
+        <li class="active"><a href="{:url('AdminHouse/add')}">新添房型</a></li>
+    </ul>
+    <form action="{:url('AdminHouse/add')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="100">分类<span class="form-required">*</span></th>
+                        <td>
+                            <select name="pet_type" class="form-control" style="width: 150px;">
+                                <option value="1">猫舍</option>
+                                <option value="2">狗舍</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>房型<span class="form-required">*</span></th>
+                        <td>
+                            <input class="form-control" type="text" name="title" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>容纳量<span class="form-required">*</span></th>
+                        <td>
+                            <input class="form-control" type="number" name="num" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>简介</th>
+                        <td>
+                            <textarea class="form-control" name="short_content" style="height: 50px;"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+                        <a class="btn btn-default" href="{:url('AdminHouse/index')}">{:lang('BACK')}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <table class="table table-bordered">
+                    <tr>
+                        <th><b>缩略图(233*233)</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="text-align: center;">
+                                <input type="hidden" name="thumb" id="thumbnail" value="">
+                                <a href="javascript:uploadOneImage('图片上传','#thumbnail');">
+                                    <img src="__TMPL__/public/assets/images/default-thumbnail.png"
+                                         id="thumbnail-preview"
+                                         width="135" style="cursor: pointer"/>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

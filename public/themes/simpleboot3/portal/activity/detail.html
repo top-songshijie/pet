@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>活动详情</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="http://at.alicdn.com/t/font_820074_1fujb8gaalx.css" rel="stylesheet" type="text/css">
+    <link href="__TMPL__/public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="__TMPL__/public/css/my_detail.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background: #F8F8F8">
+<div id="warp">
+    <div class="course_box">
+        <if condition="$info.status eq 1">
+            <div class="course_pos">进行中</div>
+            <else />
+            <div class="course_pos couse_hui">已结束</div>
+        </if>
+        <div class="course_img"><img src="{:cmf_get_image_url($info.banner)}"></div>
+        <p class="course_name">{$info.title}</p>
+        <div class="course_case">
+            <i class="iconfont icon-shijian"></i>
+            <p class="course_txt">活动时间</p>
+            <p class="course_day">{$info.activity_date}</p>
+        </div>
+        <div class="course_case">
+            <i class="iconfont icon-Shapecopy"></i>
+            <p class="course_txt">活动地点</p>
+            <p class="course_day">{$info.activity_place}</p>
+        </div>
+    </div>
+
+    <div class="course_fax">图文详情</div>
+    <div class="course_info">
+        {$info.content}
+        <!--<div class="course_pic"><img src="__TMPL__/public/images/pic4.png"></div>-->
+        <!--<p class="character">稀有动物即濒危动物，国家重点保护对象，它是一项珍贵的、不可替代的、不可再生的自然资源，在维护生态平衡、促进经济发展、满足人民日益增长的物质和文化需求、发展对外关系、提高社会主义精神文明等方面发挥着重要作用。</p>-->
+    </div>
+    <if condition="$info.status eq 1">
+        <if condition="$info.if_baoming eq 1">
+            <div class="course_btn course_over"><a href="javascript:;">已 报 名</a></div>
+            <else />
+            <div class="course_btn"><a id="baoming">立 即 报 名</a></div>
+        </if>
+        <else />
+        <div class="course_btn course_over"><a href="javascript:;">已 结 束</a></div>
+    </if>
+</div>
+
+<script type="text/javascript" src="__TMPL__/public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/base.js"></script>
+<script>
+    $('#baoming').on('click',function () {
+        var id = "{$info['id']}"
+        $.ajax({
+            type:"POST",
+            url:"{:url('activity/baoming')}",
+            data:{
+                'id': id
+            },
+            success:function (data) {
+                if(data.code != 1){
+                    alert(data.msg)
+                }else{
+                    alert('报名成功');
+                    history.go(0);
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

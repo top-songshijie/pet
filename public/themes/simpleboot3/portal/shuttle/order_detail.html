@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>接送班车预约</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="http://at.alicdn.com/t/font_820074_1fujb8gaalx.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__/public/css/weui.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__/public/css/myweui.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__/public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="__TMPL__/public/css/make.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background: #FDB634;">
+<div id="warp">
+    <div class="repast_box">
+        <div class="icon_all icon_car"><img src="__TMPL__/public/images/car.png"></div>
+        <h2>接送班车预约</h2>
+        <p class="repast_txt">宠物寄养在中国主要以三种形式的服务体制存在从寄养宠物的种类来分，可分为宠物犬寄养。</p>
+    </div>
+
+    <div class="repast_con">
+        <div class="repast_title"><img src="__TMPL__/public/images/head3.jpg"></div>
+        <p class="repast_name animal_name">小喵小喵</p>
+        <div id="change_pet" class="course_box">
+            <p class="course_txt">更换宠物</p>
+            <i class="iconfont icon-icon-test"></i>
+        </div>
+    </div>
+    <div class="repast_date order_box">
+        <div class="repast_bor address">
+            <i class="iconfont icon-icon-test"></i>
+            <span class="repast_day">接送位置</span>
+            <input type="text" class="repast_make res_site" placeholder="请选择接送位置" readonly>
+        </div>
+        <div class="repast_bor">
+            <span class="repast_day">详细地址</span>
+            <input type="text" class="order_txt" placeholder="请输入详细地址">
+        </div>
+        <div class="repast_bor" onclick="data()">
+            <i class="iconfont icon-icon-test"></i>
+            <span class="repast_day">接送时间</span>
+            <input type="text" class="order_day all_time" placeholder="请选择接送时间" readonly>
+        </div>
+        <div class="repast_btn order_btn"><a href="#">确认预约</a></div>
+    </div>
+
+    <div class="repast_explain">
+        <i class="iconfont icon-icon_prompt"></i>
+        <a href="#">收费标准说明</a>
+    </div>
+    <div id="time-container"></div>
+</div>
+<!-- begin：增加宠物按钮 -->
+<div class="pet_add hidden"><a href="pet_info.html">增加宠物</a></div>
+
+<!-- begin:收费标准说明 -->
+<div class="make_fn" style="display: none;">
+    <div class="fn_box">
+        <i class="iconfont icon-guanbi"></i>
+        <h2>说明</h2>
+        <div class="fn_txt">
+            <p>1)悬赏头条仅为网络信息发布平台，任何透过悬赏头条发布的信息及其他产品或者服务均系用户自行发布，悬赏头条不担保其发布内容的真实性、准确性及可靠性。悬赏头条对其合法性概不负责，亦不承担任何法律责任；</p>
+            <p>2)用户在通过悬赏头条得到资讯和信息后与信息发布人（即悬赏人）所进行的任何交易均系其双方自主交易，双方若发生纠纷，皆由用户自行承担，与悬赏头条无关 悬赏头条不承担任何法律责任；</p>
+            <p>3)本公司对于用户由于使用悬赏头条平台而造 成的任何金钱、商誉、名誉的损失，或任何特殊的、间接的、或结果性的损失都不负任何责任。建议悬赏人与揭榜人双方私下自行签署正规协议，以保障双方利益。一切不签署协议的业务，均有诈骗嫌疑。请您谨慎鉴别。</p>
+        </div>
+    </div>
+    <div class="fn_btn"><a href="#">确定</a></div>
+</div>
+<!-- end:收费标准说明 -->
+
+<script type="text/javascript" src="__TMPL__/public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/weui.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/base.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/citypicker.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // 显示资费收费说明
+        $('.repast_explain').on('click',function(){
+            $('.make_fn').show();
+        })
+        $('.fn_btn,.icon-guanbi').on('click',function(){
+            $('.make_fn').hide();
+        });
+    });
+    //省市区关联
+    $('.address').on('click ',function(){
+        weui.picker(rawCitiesData, {
+            defaultValue:["110000","110000","110101"],
+            onConfirm: function (result) {
+                $('.res_site').val(result[0].label + '-' + result[1].label + '-' + result[2].label);
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>我的萌宠</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="http://at.alicdn.com/t/font_820074_1fujb8gaalx.css" rel="stylesheet" type="text/css">
+    <link href="__TMPL__/public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="__TMPL__/public/css/center.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background: #F8F8F8">
+<div id="warp">
+    <div class="cutePet_bg"></div>
+    <div class="cutePet_box">
+        <!-- begin:切换标题 -->
+        <ul class="cutePet_ul">
+            <li class="cute_curr" style="padding-left: 0.55rem"><a href="#">喵星人</a></li>
+            <li style="padding-right: 0.66rem"><a href="#">旺星人</a></li>
+        </ul>
+        <!-- begin:切换内容 -->
+        <div class="cutePet_con">
+            <div class="cutePet_list">
+                <div class="cute_box">
+                    <div class="pet_jueyu">未绝育</div>
+                    <div class="cute_pic"><img src="__TMPL__/public/images/head3.jpg"></div>
+                    <div class="cute_left">
+                        <div class="cutePet_page">
+                            <h2>妮妮</h2>
+                            <p class="cute_icon"><i class="iconfont icon-nan"></i></p>
+                        </div>
+                        <p class="cute_txt cute_dis">品种 <span>英国短毛</span></p>
+                        <p class="cute_txt weight">体重 <span>2kg</span></p>
+                        <p class="cute_txt">生日 <span>2018-08-09</span></p>
+                    </div>
+                </div>
+
+                <div class="cute_box">
+                    <div class="pet_jueyu">已绝育</div>
+                    <div class="cute_pic"><img src="__TMPL__/public/images/head3.jpg"></div>
+                    <div class="cute_left">
+                        <div class="cutePet_page">
+                            <h2>妮妮</h2>
+                            <p class="cute_icon"><i class="iconfont icon-nan"></i></p>
+                        </div>
+                        <p class="cute_txt cute_dis">品种 <span>英国短毛</span></p>
+                        <p class="cute_txt weight">体重 <span>2kg</span></p>
+                        <p class="cute_txt">生日 <span>2018-08-09</span></p>
+                    </div>
+                </div>
+
+                <div class="cute_box">
+                    <div class="pet_jueyu">已绝育</div>
+                    <div class="cute_pic"><img src="__TMPL__/public/images/head3.jpg"></div>
+                    <div class="cute_left">
+                        <div class="cutePet_page">
+                            <h2>妮妮</h2>
+                            <p class="cute_icon"><i class="iconfont icon-nan"></i></p>
+                        </div>
+                        <p class="cute_txt cute_dis">品种 <span>英国短毛</span></p>
+                        <p class="cute_txt weight">体重 <span>2kg</span></p>
+                        <p class="cute_txt">生日 <span>2018-08-09</span></p>
+                    </div>
+                </div>
+            </div>
+            <!-- end: cutePet_list -->
+            <div class="cutePet_list hidden">
+                <div class="cute_box">
+                    <div class="cute_pic"><img src="__TMPL__/public/images/pic2.png"></div>
+                    <div class="cute_left">
+                        <div class="cutePet_page">
+                            <h2>茶杯</h2>
+                            <p class="cute_icon"><i class="iconfont icon-nv"></i></p>
+                        </div>
+                        <p class="cute_txt cute_dis">品种 <span>茶杯犬</span></p>
+                        <p class="cute_txt weight">体重 <span>2kg</span></p>
+                        <p class="cute_txt">生日 <span>2018-08-09</span></p>
+                    </div>
+                </div>
+
+                <div class="cute_box">
+                    <div class="cute_pic"><img src="__TMPL__/public/images/pic2.png"></div>
+                    <div class="cute_left">
+                        <div class="cutePet_page">
+                            <h2>茶杯</h2>
+                            <p class="cute_icon"><i class="iconfont icon-nv"></i></p>
+                        </div>
+                        <p class="cute_txt cute_dis">品种 <span>茶杯犬</span></p>
+                        <p class="cute_txt weight">体重 <span>2kg</span></p>
+                        <p class="cute_txt">生日 <span>2018-08-09</span></p>
+                    </div>
+                </div>
+            </div>
+            <!-- end: cutePet_list -->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="__TMPL__/public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/base.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // 跳转详情页
+        $('.cute_box').on('click',function(){
+            window.location.href = "info_edit.html";
+        })
+        //我的萌宠切换
+        var $menu_box = $('.cutePet_box .cutePet_ul>li');
+        $menu_box.click(function(){
+            $(this).addClass('cute_curr').siblings().removeClass('cute_curr');
+            var index = $menu_box.index(this);
+            $('.cutePet_con .cutePet_list').eq(index).show().siblings().hide();
+        });
+    });
+</script>
+</body>
+</html>

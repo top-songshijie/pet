@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>我的活动</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="__TMPL__/public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="__TMPL__/public/css/center.css" rel="stylesheet" type="text/css">
+</head>
+<style>
+    .app {
+        width: 80%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+<body>
+<div id="warp">
+    <div class="mine_page">
+        <volist name="list" id="vo">
+            <div class="mine_list" data-id="{$vo.id}">
+                <div class="mine_img"><img src="{:cmf_get_image_url($vo.banner)}"></div>
+                <div class="mine_left">
+                    <h2 class="app">{$vo.title}</h2>
+                    <p class="mine_txt">{$vo.activity_date}</p>
+                </div>
+                <div class="mine_money">
+                    <if condition="$vo.status eq 1">
+                        进行中
+                        <else />
+                        已结束
+                    </if>
+                </div>
+            </div>
+        </volist>
+    </div>
+</div>
+
+<script type="text/javascript" src="__TMPL__/public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/base.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // 跳转详情页
+        $('.mine_list').on('click',function(){
+            var id = $(this).attr('data-id');
+            window.location.href = "/portal/activity/detail/id/"+id;
+        })
+    });
+</script>
+</body>
+</html>

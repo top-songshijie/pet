@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>宠物信息</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="http://at.alicdn.com/t/font_820074_jm2k0nx74e.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__/public/css/weui.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__/public/css/myweui.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__/public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="__TMPL__/public/css/pet.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="warp">
+    <div class="info_box">
+        <form id="myform">
+        <div class="info_tier">
+            <div class="info_head"><img id="petavatar" src="__TMPL__/public/images/head_bg.png"></div>
+            <h2>设置头像</h2>
+            <div class="info_list">
+                <span class="info_name">宠物昵称</span>
+                <input type="text" name="name" id="name" class="info_input" placeholder="请输入宠物昵称">
+            </div>
+            <div class="info_list weui-cells weui-cells_form" onclick="data()">
+                <i class="iconfont icon-icon-test"></i>
+                <span class="info_name">宠物生日</span>
+                <input type="text" name="birthday" class="info_input select_pet" readonly="readonly" unselectable="on" onfocus="this.blur()" placeholder="请选择宠物生日">
+            </div>
+            <div class="info_list info_sex">
+                <i class="iconfont icon-icon-test"></i>
+                <span class="info_name">宠物性别</span>
+                <input type="text" name="sex" class="info_input select_pet" readonly="readonly" unselectable="on" onfocus="this.blur()" placeholder="请选择宠物性别">
+            </div>
+            <div class="info_list info_variety">
+                <i class="iconfont icon-icon-test"></i>
+                <span class="info_name">宠物品种</span>
+                <input type="text" name="strain" class="info_input select_pet" readonly="readonly" unselectable="on" onfocus="this.blur()" placeholder="请选择宠物品种">
+            </div>
+            <div class="info_list">
+                <span class="info_name">宠物体重</span>
+                <input type="number" name="weight" id="weight" class="info_input" placeholder="请输入宠物体重">
+                <div class="info_weight">kg</div>
+            </div>
+            <div class="info_list info_raise">
+                <i class="iconfont icon-icon-test"></i>
+                <span class="info_name">是否绝育</span>
+                <input type="text" name="no_sex" class="info_input select_pet" readonly="readonly" unselectable="on" onfocus="this.blur()" placeholder="请选择是否绝育">
+            </div>
+
+            <div class="info_btn"><a class="next">下一步</a></div>
+        </div>
+        </form>
+    </div>
+    <div id="time-container"></div>
+</div>
+
+<script type="text/javascript" src="__TMPL__/public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/base.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/weui.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/myweui.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        //宠物性别下拉
+        $('.info_sex').on('click', function () {
+            weui.picker([{
+                label: '男宝',
+                value: 1
+            }, {
+                label: '女宝',
+                value: 2
+            }, ], {
+                onChange: function (result) {
+                    sex = result[0].value;
+                    console.log(result[0].value);
+                },
+                onConfirm: function (result) {
+                    $('.info_sex .info_input').val(result[0].label)
+                }
+            });
+        });
+        //宠物品种下拉
+        $('.info_variety').on('click', function () {
+            weui.picker({$data}, {
+                onChange: function (result) {
+                    strain = result[0].value;
+                    console.log(result[0].value);
+                },
+                onConfirm: function (result) {
+                    $('.info_variety .info_input').val(result[0].label)
+                }
+            });
+        });
+        //是否绝育下拉
+        $('.info_raise').on('click', function () {
+            weui.picker([{
+                label: '是',
+                value: 1
+            }, {
+                label: '否',
+                value: 0
+            }, ], {
+                onChange: function (result) {
+                    no_sex = result[0].value;
+                    console.log(result[0].value);
+                },
+                onConfirm: function (result) {
+                    $('.info_raise .info_input').val(result[0].label)
+                }
+            });
+        });
+    });
+    // 宠物选择生日
+    function data(date) {
+        var _this = this;
+        weui.datePicker({
+            start: 1990-12-12,
+            max: 2022-12-12,
+            defaultValue: [new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()],
+            onConfirm: function(result) {
+                var time = result[0].label +result[1].label + result[2].label;
+                birthday = time
+                console.log(time);
+                $('.weui-cells .info_input').val(time);
+            },
+            className: 'mydata'
+        })
+    }
+
+    //微信上传照片
+    wx.config({
+        debug: false,
+        appId: "{$signPackage['appId']}",
+        timestamp: "{$signPackage['timestamp']}",
+        nonceStr: "{$signPackage['nonceStr']}",
+        signature: "{$signPackage['signature']}",
+        jsApiList: [
+            'chooseImage',
+            'uploadImage',
+        ]
+    });
+    //点击选择
+    $('.info_head').on('click',function () {
+        serverIds = '';
+        wx.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                uploadImages(localIds)
+            }
+        });
+    })
+    //上传图片
+    function uploadImages(localIds) {
+        var localId = localIds.pop();
+        wx.uploadImage({
+            localId: localId,
+            isShowProgressTips: 1,
+            success: function (res) {
+                serverIds += res.serverId + ',';
+                if(localIds.length > 0){
+                    uploadImages(localIds);
+                }else{
+                    $.ajax({
+                        url:"{:url('Common/upload_wx_pic')}",
+                        type:"POST",
+                        data:{media:serverIds},
+                        success:function (data) {
+                            if(data.code == 1){
+                                $('#petavatar').attr('src',data.data.httpimgurls);
+                                avatar = data.data.imgurls;
+                            }
+                        }
+                    });
+                }
+            },
+        });
+    }
+    
+    //下一步
+    $('.next').on('click',function () {
+        var name = $('#name').val();
+        var weight = $('#weight').val();
+        var type = "{$type}";
+        if(typeof avatar == 'undefined' || avatar ==''){
+            alert('请上传宠物头像')
+        } else if(typeof name == 'undefined' || name ==''){
+            alert('宠物昵称不能为空');
+        }else if(typeof birthday == 'undefined'){
+            alert('请选择宠物生日');
+        }else if(typeof sex == 'undefined'){
+            alert('请选择宠物性别');
+        }else if(typeof strain == 'undefined'){
+            alert('请选择宠物品种');
+        }else if(typeof weight == 'undefined' || weight ==''){
+            alert('请填写宠物重量');
+        }else if(typeof no_sex == 'undefined'){
+            alert('请选择是否绝育');
+        }else{
+            $.ajax({
+                url:"{:url('Bank/bankpet_post')}",
+                type:"POST",
+                data:{
+                    avatar:avatar,
+                    name:name,
+                    birthday:birthday,
+                    sex:sex,
+                    strain:strain,
+                    weight:weight,
+                    no_sex:no_sex,
+                    type:type,
+                },
+                success:function (data) {
+                    if(data.code == 1){
+                        location.href = "{url:('bank/login')}"
+                    }
+                }
+            });
+        }
+
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>预约介绍</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="http://at.alicdn.com/t/font_820074_jm2k0nx74e.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__/public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="__TMPL__/public/css/pet.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="warp">
+    <div class="duce_box">
+        <div class="duce_pic"><img src="{:cmf_get_image_url($info.banner)}"></div>
+        <h2>我们的宠物服务预约介绍</h2>
+        {$info.content}
+        <!--<p class="duce_txt">宽敞明亮：宽敞明亮的生活环境使宠物可以有好的休息和活动的生活环境，休息区和活动区要分开足够发寄养房间：要根据宠物的年龄，大小，性别脾气秉性等特点来安排不同的生活房间，每个房间小型狗不应超过六只，大型狗不应超过三只。</p>-->
+        <!--<p class="duce_txt">休息室应布置温馨惬意，给宠物家一样的感觉。周边环境：寄养宠物狗的地点最好远离居民区，因为狗狗兴奋时候会吠，会影响周边邻居不满。</p>-->
+        <!--<p class="duce_txt">宠物酒店一般专业的机构会选择人员稀疏的地方环境优越，酒店室内通风良好，有独立的遛狗场所有专业的训养。</p>-->
+    </div>
+    <div class="pet_btn"><a href="{:url('shuttle/order_detail')}">立即预约</a></div>
+</div>
+
+<script type="text/javascript" src="__TMPL__/public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/base.js"></script>
+</body>
+</html>

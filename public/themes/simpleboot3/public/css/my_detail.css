@@ -1,0 +1,265 @@
+@charset "UTF-8";
+
+html,body{ width: 100%; font-family:'Microsoft Yahei', Arial, Helvetica, sans-serif; overflow-x:hidden;}
+input,button,textarea{ font-family:'Microsoft Yahei', Arial, Helvetica, sans-serif;}
+html{ font-size:62.5%; }
+body{ font-size: 1.2rem; }
+
+input::-webkit-cancel-button {display: none;}
+input::-ms-clear {display: none;}
+input[type=text]:focus{ box-shadow: none;}
+
+*{ box-sizing:border-box; outline:none; -webkit-tap-highlight-color:rgba(255,0,0,0);}
+img{ display: block; max-width: 100%;}
+
+#warp{ width: 7.5rem; padding-bottom: 0.5rem;}
+
+/*订单详情   游泳预约*/
+.swim_title{
+  padding: 0.68rem 0 0.5rem 0.58rem;
+  color: #fff;
+  font-size: 0.4rem;
+}
+.swim_box{
+  font-size: 0;
+  width: 7rem;
+  margin: 0 auto;
+  padding: 0 0.42rem 0.42rem;
+  border-radius: 0.2rem;
+  background: #fff;
+}
+.swim_box h2{
+  padding: 0.46rem 0 0.4rem;
+  color: #333;
+  font-size: 0.36rem;
+  font-weight: 500;
+}
+.swim_box .swim_make{
+  padding: 0.46rem 0 0.2rem;
+}
+.swim_img{
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.swim_img img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.swim_info{
+  display: inline-block;
+  padding-left: 0.34rem;
+  vertical-align: middle;
+}
+.swim_info .swim_txt{
+  color: #999999;
+  font-size: 0.28rem;
+}
+.cutePet_page{
+  padding-bottom: 0.15rem;
+}
+.cutePet_page .swim_name{
+  display: inline-block;
+  color: #333;
+  font-size: 0.32rem;
+  font-weight: bold;
+  vertical-align: middle;
+}
+.cutePet_page .cute_icon{
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  margin-left: 0.2rem;
+  text-align: center;
+  background: #F5C451;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.cutePet_page .icon-nan,.icon-nv{
+  color: #fff;
+  font-size: 12px;
+}
+.swim_bom{
+  margin-top: 1px;
+}
+.swim_day{
+  color: #999999;
+  font-size: 0.28rem;
+}
+.swim_box .school_box{
+  border-bottom: none;
+}
+/*宠物寄养预约*/
+.foster_box{
+  margin-top: 1px;
+  padding: 0 0 0.56rem 0.42rem;
+}
+.foster_pic{
+  display: inline-block;
+  width: 1.42rem;
+  height: 1.42rem;
+  vertical-align: middle;
+}
+.foster_pic img{
+  width: 100%;
+  height: 100%;
+}
+.foster_info{
+  display: inline-block;
+  padding-left: 0.38rem;
+  vertical-align: middle;
+}
+.foster_info .foster_name{
+  color: #333;
+  font-size: 0.32rem;
+  font-weight: bold;
+}
+.foster_info .foster_txt{
+  width: 4.48rem;
+  color: #999;
+  font-size: 0.28rem;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+/*萌宠活动*/
+.activ_box{
+  position: relative;
+  width: 6.8rem;
+  margin: 0.42rem auto;
+  padding-top: 0.22rem;
+  background: #fff;
+  border-radius: 0.1rem;
+  box-shadow:0px 15px 20px 0px rgba(0,0,0,0.08);
+}
+.activ_box a{
+  display: block;
+}
+.activ_pic{
+  width: 6.56rem;
+  height: 3.21rem;
+}
+.activ_pic img{
+  width: 100%;
+  height: 100%;
+}
+.activ_box .activ_txt{
+  padding: 0.32rem 0;
+  color: #333;
+  font-size: 0.32rem;
+  text-align: center;
+  font-weight: bold;
+}
+.activ_box .active_pos{
+  position: absolute;
+  top: 0.5rem;
+  right: 0;
+  width: 1.27rem;
+  height: 0.56rem;
+  line-height: 0.56rem;
+  color: #fff;
+  font-size: 0.24rem;
+  text-align: center;
+  background: #FDB634;
+  border-radius: 0.15rem 0 0 0.15rem;
+}
+.activ_box .active_txt{
+  background: #D1CCC8;
+}
+/*活动详情页面*/
+.course_box{
+  position: relative;
+  padding-bottom: 0.28rem;
+  font-size: 0;
+  background: #fff;
+}
+.course_box .course_pos{
+  position: absolute;
+  top: 0.7rem;
+  right: 0;
+  width: 1.27rem;
+  height: 0.56rem;
+  line-height: 0.56rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.28rem;
+  background: #FDB634;
+  border-radius: 0.15rem 0 0 0.15rem;
+}
+.course_box .couse_hui{
+  background: #ccc;
+}
+.course_img{
+  width: 7.5rem;
+}
+.course_img img{
+  width: 100%;
+}
+.course_box .course_name{
+  padding: 0.5rem 0.34rem 0.18rem;
+  color: #333;
+  font-size: 0.4rem;
+  font-weight: bold;
+}
+.course_case{
+  padding-left: 0.36rem;
+  padding-bottom: 0.15rem;
+}
+.course_case .course_txt{
+  display: inline-block;
+  padding-left: 0.14rem;
+  color: #333;
+  font-size: 0.3rem;
+}
+.course_case .course_day{
+  display: inline-block;
+  padding-left: 0.32rem;
+  color: #666;
+  font-size: 0.3rem;
+}
+.course_case .iconfont{
+  color: #D1CCC8;
+}
+.course_fax{
+  padding: 0.25rem 0;
+  color: #999;
+  font-size: 0.26rem;
+  text-align: center;
+}
+.course_info{
+  width: 7.5rem;
+  padding: 0.45rem 0.35rem;
+  background: #fff;
+}
+.course_pic{
+  width: 6.79rem; 
+}
+.course_pic img{
+  width: 100%;
+}
+.character{
+  width: 6.65rem;
+  padding-top: 0.48rem;
+  color: #666;
+  font-size: 0.3rem;
+  line-height: 0.48rem;
+}
+.course_btn{
+  width: 7.5rem;
+  height: 0.94rem;
+  line-height: 0.94rem;
+  text-align: center;
+  background: #FDB634;
+}
+.course_btn a{
+  display: block;
+  color: #fff;
+  font-size: 0.36rem;
+}
+.course_over{
+  background: #ccc;
+}

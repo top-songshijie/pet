@@ -1,0 +1,117 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('AdminActivity/index')}">所有活动</a></li>
+        <li class="active"><a href="javascript:;">活动详情</a></li>
+    </ul>
+    <form action="{:url('AdminActivity/edit')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="100">标题<span class="form-required">*</span></th>
+                        <td>
+                            <input type="hidden" name="id" value="{$info.id}">
+                            <input class="form-control" type="text" name="title" required value="{$info.title}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>活动地点<span class="form-required">*</span></th>
+                        <td>
+                            <input class="form-control" type="text" name="activity_place" required value="{$info.activity_place}" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>活动内容<span class="form-required">*</span></th>
+                        <td>
+                            <script type="text/plain" id="content" name="content">{$info.content}</script>
+                        </td>
+                    </tr>
+                </table>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+                        <a class="btn btn-default" href="{:url('AdminArticle/index')}">{:lang('BACK')}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <table class="table table-bordered">
+                    <tr>
+                        <th><b>banner图（750*361）</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="text-align: center;">
+                                <input type="hidden" name="banner" id="thumbnail"
+                                       value="{$info.banner|default=''}">
+                                <a href="javascript:uploadOneImage('图片上传','#thumbnail');">
+                                    <img src="{:cmf_get_image_preview_url($info.banner)}"
+                                         id="thumbnail-preview"
+                                         width="135" style="cursor: pointer"/>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><b>活动时间</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="form-control js-bootstrap-date" type="text" name="activity_date"
+                                   value="{$info.activity_date}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><b>状态</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="checkbox">
+                                <php>
+                                    $status_yes=$info['status']==1?"checked":"";
+                                </php>
+                                <label><input type="checkbox" name="status" value="1" {$status_yes}>进行中</label>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        editorcontent = new baidu.editor.ui.Editor();
+        editorcontent.render('content');
+        try {
+            editorcontent.sync();
+        } catch (err) {
+        }
+
+        $('.btn-cancel-thumbnail').click(function () {
+            $('#thumbnail-preview').attr('src', '__TMPL__/public/assets/images/default-thumbnail.png');
+            $('#thumbnail').val('');
+        });
+
+    });
+</script>
+</body>
+</html>

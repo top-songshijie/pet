@@ -1,0 +1,278 @@
+@charset "UTF-8";
+
+html,body{ width: 100%; font-family:'Microsoft Yahei', Arial, Helvetica, sans-serif; overflow-x:hidden;}
+input,button,textarea{ font-family:'Microsoft Yahei', Arial, Helvetica, sans-serif;}
+html{ font-size:62.5%; }
+body{ font-size: 1.2rem; }
+
+input::-webkit-cancel-button {display: none;}
+input::-ms-clear {display: none;}
+input[type=text]:focus{ box-shadow: none;}
+
+*{ box-sizing:border-box; outline:none; -webkit-tap-highlight-color:rgba(255,0,0,0);}
+img{ display: block; max-width: 100%;}
+
+#warp{ width: 7.5rem;}
+
+/*宠物选择*/
+.pet_box{
+  position: relative;
+  width: 2.5rem;
+  margin: 0 auto;
+}
+.pet_top{
+  margin: 1rem auto 0;
+}
+.pet_box .pet_dog{
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+.pet_box .pet_dog img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.pet_box .pet_txt{
+  padding-top: 0.35rem;
+  padding-bottom: 1.2rem;
+  color: #999999;
+  font-size: 0.36rem;
+  font-weight: bold;
+  text-align: center;
+}
+.pet_box .pet_icon{
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0.1rem;
+  width: 0.6rem;
+  height: 0.6rem;
+}
+.pet_box .pet_icon img{
+  width: 100%;
+  height: 100%;
+}
+
+/*宠物信息*/
+.info_box{
+  width: 7.5rem;
+  padding-top: 1.52rem;
+  padding-bottom: 0.53rem;
+  background: url('../images/bg.png') no-repeat;
+  background-size: 100% auto;
+}
+.info_tier{
+  position: relative;
+  width: 6.8rem;
+  margin: 0 auto;
+  padding-bottom: 0.75rem;
+  background: #fff;
+  border-radius: 0.1rem;
+  box-shadow:0px 18px 46px 0px rgba(0,0,0,0.11);
+}
+.info_tier h2{
+  padding-top: 1.06rem;
+  padding-bottom: 0.5rem;
+  color: #333333;
+  font-size: 0.3rem;
+  font-weight: bold;
+  text-align: center;
+}
+.info_list{
+  position: relative;
+  width: 5.56rem;
+  height: 0.94rem;
+  font-size: 0;
+  margin: 0 auto 0.28rem;
+  border: solid 1px #E4E4E4;
+  border-radius: 0.1rem;
+}
+.info_list .info_name{
+  display: inline-block;
+  padding-left: 0.42rem;
+  color: #333;
+  font-size: 0.3rem;
+  vertical-align: middle;
+}
+.info_list .info_input{
+  display: inline-block;
+  width: 3.62rem;
+  height: 0.86rem;
+  padding-left: 0.36rem;
+  color: #333;
+  font-size: 0.32rem;
+  border: none;
+  vertical-align: middle;
+}
+.info_list .icon-icon-test{
+  position: absolute;
+  top: 0.3rem;
+  right: 0.28rem;
+  color: #807D7A;
+  font-size: 8px;
+}
+.info_head{
+  position: absolute;
+  top: -1rem;
+  left: 0;
+  right: 0;
+  width: 1.79rem;
+  height: 1.79rem;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+.info_head img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.info_weight{
+  position: absolute;
+  top: 0.18rem;
+  right: 0.28rem;
+  color: #333;
+  font-size: 0.3rem;
+}
+
+/*宠物登录*/
+.login_bg{
+  width: 7.5rem;
+  padding-bottom: 2rem;
+  background: url("../images/login_bg.png") no-repeat;
+  background-size: 100% auto;
+}
+.login_box{
+  font-size: 0;
+  padding-top: 4.26rem;
+  padding-bottom: 1.23rem;
+}
+.login_box .login_list{
+  width: 5.56rem;
+  height: 0.94rem;
+  margin: 0 auto 0.46rem;
+  border: solid 1px #E4E4E4;
+  border-radius: 0.1rem;
+}
+.login_box .login_txt{
+  display: inline-block;
+  width: 4.2rem;
+  height: 0.86rem;
+  color: #333;
+  font-size: 0.32rem;
+  border: none;
+  vertical-align: middle;
+}
+.login_box .iconfont{
+  padding: 0 0.32rem;
+  color: #D1CCC8;
+  font-size: 20px;
+  vertical-align: middle;
+}
+.login_box .login_code{
+  display: inline-block;
+  padding-left: 0.45rem;
+  color: #666666;
+  font-size: 0.28rem;
+  vertical-align: middle;
+}
+.login_wid .login_txt{
+  width: 2.2rem;
+}
+
+/*预约服务*/
+.service_box{
+  padding-top: 0.29rem;
+  padding-bottom: 0.95rem;
+  text-align: center;
+}
+.service_list{
+  display: inline-block;
+  width: 3.4rem;
+}
+.service_list a{
+  display: block;
+}
+.service_list img{
+  width: 100%;
+}
+
+/*预约介绍*/
+.duce_box{
+  padding: 0.36rem 0.35rem 1.2rem;
+}
+.duce_box h2{
+  padding: 0.54rem 0rem 0.4rem;
+  color: #333333;
+  font-size: 0.34rem;
+  font-weight: bold;
+  text-align: center;
+}
+.duce_box .duce_pic{
+  width: 6.8rem;
+}
+.duce_box .duce_pic img{
+  width: 100%;
+}
+.duce_box .duce_txt{
+  padding-bottom: 0.26rem;
+  line-height: 0.48rem;
+  color: #666666;
+  font-size: 0.3rem;
+}
+/*预约成功页面*/
+.succes_img{
+  width: 4.03rem;
+  margin: 1.56rem auto 0.72rem;
+}
+.succes_img img{
+  width: 100%;
+}
+.succes_box{
+  font-size: 0;
+  text-align: center;
+}
+.succes_box h2{
+  color: #333;
+  font-size: 0.36rem;
+}
+.succes_box p{
+  padding-top: 0.42rem;
+  padding-bottom: 0.94rem;
+  color: #999999;
+  font-size: 0.3rem;
+}
+.succes_btn{
+  width: 2.71rem;
+  height: 0.88rem;
+  margin: 0 auto;
+  line-height: 0.88rem;
+  text-align: center;
+  background: #FDB634;
+  border-radius: 0.44rem;
+  box-shadow:0px 10px 20px 0px rgba(253,182,52,0.2);
+}
+.succes_btn a{
+  display: block;
+  color: #fff;
+  font-size: 0.34rem;
+}
+/*宠物信息编辑*/
+.edit_box{
+  background: none;
+  background-size: none;
+}
+.edit_kg{
+  position: absolute;
+  top: 0.18rem;
+  right: 0.3rem;
+  color: #333;
+  font-size: 0.3rem;
+}
+.edit_txt .info_input{
+  color: #333;
+}
+.edit_delete{
+  background: #F38D85;
+  box-shadow: none;
+}

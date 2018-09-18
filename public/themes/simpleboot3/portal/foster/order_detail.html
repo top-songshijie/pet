@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>宠物寄养预约</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="http://at.alicdn.com/t/font_820074_1fujb8gaalx.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__/public/css/weui.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__/public/css/myweui.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__/public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="__TMPL__/public/css/make.css" rel="stylesheet" type="text/css">
+    <link href="__TMPL__/public/css/calendar.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        #firstSelect p{line-height:25px;color: #999;font-size:12px;}
+        .calendar {
+            height: 400px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="background: #FDB634;">
+<div id="warp">
+    <div class="repast_box">
+        <div class="icon_all"><img src="__TMPL__/public/images/jiyang.png"></div>
+        <h2>宠物寄养预约</h2>
+        <p class="repast_txt">{$info.short_content}</p>
+    </div>
+
+    <div class="repast_con">
+        <div class="repast_title"><img src="{:cmf_get_image_url($mypet.avatar)}"></div>
+        <p class="repast_name animal_name">{$mypet.name}</p>
+        <div id="change_pet" class="course_box">
+            <p class="course_txt">更换宠物</p>
+            <i class="iconfont icon-icon-test"></i>
+        </div>
+    </div>
+    <div class="repast_date order_box">
+        <div class="repast_bor">
+            <i class="iconfont icon-icon-test"></i>
+            <span class="repast_day">宠物房型</span>
+            <p class="repast_make rep_home">请选择宠物房型</p>
+        </div>
+        <div id="firstSelect" class="school_box clearfix">
+            <div class="school_list">
+                <p class="school_txt1">入住</p>
+                <!-- <p class="achool_date">入住日期</p> -->
+                <input id="startDate" type="text" class="achool_date" readonly unselectable="on" onfocus="this.blur()">
+            </div>
+            <div class="school_cen">共<span class="NumDate">1</span>晚</div>
+            <div class="school_list right">
+                <p class="school_txt1">离店</p>
+                <!-- <p class="achool_date">离开日期</p> -->
+                <input id="endDate" type="text" class="achool_date" readonly unselectable="on" onfocus="this.blur()">
+            </div>
+        </div>
+        <div class="repast_btn order_btn"><a href="success_fn.html">确认预约</a></div>
+    </div>
+
+    <div class="make_explain">
+        <div class="repast_explain" data-id="1">
+            <i class="iconfont icon-icon_prompt"></i>
+            <a href="#">入住说明</a>
+        </div>
+        <div class="repast_explain" data-id="2">
+            <i class="iconfont icon-icon_prompt"></i>
+            <a href="#">收费标准说明</a>
+        </div>
+    </div>
+    <div id="time-container"></div>
+</div>
+<!-- begin：增加宠物按钮 -->
+<div class="pet_add hidden"><a href="pet_info.html">增加宠物</a></div>
+<div class="mask_calendar">
+    <div class="calendar"></div>
+</div>
+<!-- begin:收费标准说明 -->
+<div class="make_fn" style="display: none;">
+    <div class="fn_box">
+        <i class="iconfont icon-guanbi"></i>
+        <h2>说明</h2>
+        <div class="fn_txt">
+
+        </div>
+    </div>
+    <div class="fn_btn"><a href="#">确定</a></div>
+</div>
+<!-- end:收费标准说明 -->
+
+<script type="text/javascript" src="__TMPL__/public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/weui.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/base.js"></script>
+<script type="text/javascript" src="__TMPL__/public/js/date.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        //更换宠物下拉
+        var pet_list = {$pet_list};
+        $('#change_pet').on('click', function () {
+            weui.picker(pet_list, {
+                onChange: function (result) {
+                    $('.pet_add').show();
+                    $('.weui-mask,.weui-picker__action').on('click',function(){
+                        $('.pet_add').hide();
+                    })
+                },
+                onConfirm: function (result) {
+                    $('.pet_add').hide();
+                    $.ajax({
+                        type:'POST',
+                        url:"{:url('mine/cut_pet')}",
+                        data:{
+                            'id':result[0].value
+                        },
+                        success:function (data) {
+                            $('.animal_name').text(data.data.name);
+                            $('.repast_title img').attr('src',data.data.avatar)
+                        }
+                    })
+                }
+            });
+        });
+        //点击宠物房型跳转
+        $('.repast_bor').on('click',function(){
+            window.location.href = "/portal/foster/pethouse";
+        });
+        // 显示资费收费说明
+        $('.repast_explain').on('click',function(){
+            var sign = $(this).attr('data-id');
+            if(sign == 1){
+                //入住说明
+                var html = "{$rzsm}";
+            }else{
+                //收费标准说明
+                var html = "{$sfbz}";
+            }
+            $('.fn_txt').html(html)
+            $('.make_fn').show();
+        })
+        $('.fn_btn,.icon-guanbi').on('click',function(){
+            $('.make_fn').hide();
+        });
+        //入住时间选择
+        $('#firstSelect').on('click',function () {
+            $('.mask_calendar').show();
+        });
+        $('.mask_calendar').on('click',function (e) {
+            if(e.target.className == "mask_calendar"){
+                $('.calendar').slideUp(200);
+                $('.mask_calendar').fadeOut(200);
+            }
+        })
+        $('#firstSelect').calendarSwitch({
+            selectors : {
+                sections : ".calendar"
+            },
+            index : 4,      //展示的月份个数
+            animateFunction : "slideToggle",        //动画效果
+            controlDay:true,
+            //知否控制在daysnumber天之内，这个数值的设置前提是总显示天数大于90天
+            daysnumber : "90",     //控制天数
+            comeColor : "#FDB634",       //入住颜色
+            outColor : "#FDB634",      //离店颜色
+            comeoutColor : "#FDF0CD",        //入住和离店之间的颜色
+            callback :function(){ //回调函数
+                $('.mask_calendar').fadeOut(200);
+                var startDate = $('#startDate').val();  //入住的天数
+                var endDate = $('#endDate').val();      //离店的天数
+                var NumDate = $('.NumDate').text();    //共多少晚
+                console.log(startDate);
+                console.log(endDate);
+                console.log(NumDate);
+                //下面做ajax请求
+                //show_loading();
+                /*$.post("demo.php",{startDate:startDate, endDate:endDate, NumDate:NumDate},function(data){
+                    if(data.result==1){
+                        //成功
+                    } else {
+                        //失败
+                    }
+                })  ;*/
+            },
+            comfireBtn:'.comfire'//确定按钮的class或者id
+        });
+        var b=new Date();
+        var ye=b.getFullYear();
+        var mo=b.getMonth()+1;
+        mo = mo<10?"0"+mo:mo;
+        var da=b.getDate();
+        da = da<10?"0"+da:da;
+        $('#startDate').val(ye+'-'+mo+'-'+da);
+        b=new Date(b.getTime()+24*3600*1000);
+        var ye=b.getFullYear();
+        var mo=b.getMonth()+1;
+        mo = mo<10?"0"+mo:mo;
+        var da=b.getDate();
+        da = da<10?"0"+da:da;
+        $('#endDate').val(ye+'-'+mo+'-'+da);
+    });
+</script>
+</body>
+</html>

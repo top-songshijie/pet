@@ -1,0 +1,47 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class=""><a href="javascript:history.back(-1);">返回</a></li>
+        <li class="active"><a href="#">添加品种</a></li>
+    </ul>
+    <form action="{:url('AdminMember/addStrain')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="100">分类<span class="form-required">*</span></th>
+                        <td>
+                            <select name="type" class="form-control" style="width:100px;">
+                                <option value="1" >猫</option>
+                                <option value="2" >狗</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>品种<span class="form-required">*</span></th>
+                        <td>
+                            <input class="form-control" type="text" name="content"
+                                   required value=""/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+                <a class="btn btn-default" href="javascript:history.back(-1);">{:lang('BACK')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+</body>
+</html>
